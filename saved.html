@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>📌 محفوظات المحتوى — رادار كليم</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#F6F1E7;--card:#FFFDF7;--ink:#232323;--muted:#6f6a5f;--line:#e5ddcc;--accent:#C0392B;--gold:#B8860B;--green:#2e6e4e}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--cream);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;min-height:100vh}
+header{position:sticky;top:0;z-index:5;background:var(--ink);color:var(--cream);padding:12px 22px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:18px;font-weight:700}
+header a{color:var(--cream);text-decoration:none;font-size:13px;opacity:.8;border:1px solid #555;border-radius:8px;padding:5px 12px}
+header a:hover{opacity:1}
+.spacer{flex:1}
+main{max-width:1240px;margin:0 auto;padding:22px 16px 60px}
+.intro{font-size:13.5px;color:var(--muted);line-height:1.9;margin-bottom:16px}
+.stats{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:18px}
+.stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 16px;min-width:120px}
+.stat .n{font-size:22px;font-weight:700}.stat .l{font-size:12px;color:var(--muted)}
+details.syn{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 18px;margin-bottom:12px}
+details.syn summary{cursor:pointer;font-weight:700;font-size:15px}
+.syn .body{margin-top:12px;font-size:13.5px;line-height:2}
+.syn h4{font-size:14px;margin:14px 0 6px;border-inline-start:4px solid var(--gold);padding-inline-start:9px}
+.syn ul{padding-inline-start:20px}
+.syn li{margin-bottom:4px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin-top:8px}
+.fcard{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:var(--cream);cursor:pointer}
+.fcard:hover{border-color:var(--accent)}
+.fcard b{font-size:13.5px}.fcard .c{font-size:11.5px;color:var(--accent);margin-inline-start:6px}
+.fcard p{font-size:12.5px;color:var(--muted);line-height:1.8;margin-top:4px}
+.toolbar{position:sticky;top:56px;z-index:4;background:var(--cream);padding:10px 0;display:flex;gap:8px;flex-wrap:wrap;align-items:center;border-bottom:1px solid var(--line);margin-bottom:14px}
+input,select{font-family:inherit;font-size:14px;border-radius:8px;border:1px solid var(--line);padding:7px 12px;background:var(--card);color:var(--ink)}
+input[type=search]{flex:1;min-width:180px}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.chip{font-size:12.5px;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 12px;cursor:pointer;user-select:none}
+.chip.on{background:var(--ink);color:var(--cream);border-color:var(--ink)}
+.chip i{font-style:normal;opacity:.6;margin-inline-start:4px;font-size:11px}
+.count{font-size:12.5px;color:var(--muted);margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;cursor:pointer;display:flex;flex-direction:column;transition:transform .15s}
+.card:hover{transform:translateY(-2px);border-color:#cfc4ad}
+.card .th{aspect-ratio:4/5;background:#e9e2d3 center/cover no-repeat;position:relative}
+.card .ty{position:absolute;top:8px;inset-inline-start:8px;background:rgba(0,0,0,.65);color:#fff;font-size:10.5px;border-radius:6px;padding:2px 7px}
+.card .im{position:absolute;top:8px;inset-inline-end:8px;background:var(--gold);color:#fff;font-size:10.5px;border-radius:6px;padding:2px 7px;font-weight:700}
+.card .bd{padding:10px 12px 12px;display:flex;flex-direction:column;gap:5px;flex:1}
+.card .tt{font-size:14px;font-weight:600;line-height:1.6}
+.card .us{font-size:11.5px;color:var(--muted)}
+.card .fm{font-size:11.5px;color:var(--accent);font-weight:600}
+.card .ct{font-size:10.5px;color:var(--green);border:1px solid #bcd6c8;border-radius:999px;padding:1px 8px;align-self:flex-start}
+.more{display:block;margin:20px auto;font-family:inherit;font-size:14px;border-radius:10px;border:1px solid var(--line);padding:10px 22px;background:var(--card);cursor:pointer}
+.modal{position:fixed;inset:0;background:rgba(20,18,15,.6);z-index:20;display:none;align-items:flex-start;justify-content:center;overflow-y:auto;padding:30px 12px}
+.modal.on{display:flex}
+.mbox{background:var(--card);border-radius:16px;max-width:920px;width:100%;display:grid;grid-template-columns:320px 1fr;overflow:hidden}
+.mbox .imgs{background:#1c1b19;display:flex;flex-direction:column;gap:2px}
+.mbox .imgs img{width:100%;display:block}
+.mbox .tx{padding:18px 20px 22px;font-size:13.5px;line-height:1.95}
+.mbox h2{font-size:18px;line-height:1.6;margin-bottom:4px}
+.mbox .mt{font-size:12px;color:var(--muted);margin-bottom:10px}
+.mbox .mt a{color:var(--accent);font-weight:600}
+.row{margin-bottom:9px}
+.row .k{font-weight:700;font-size:12.5px;color:var(--gold);display:block}
+.row.kl{background:var(--ink);color:var(--cream);border-radius:10px;padding:10px 13px}
+.row.kl .k{color:#f0c96a}
+.x{position:fixed;top:14px;inset-inline-end:18px;background:var(--card);border:none;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer;z-index:21}
+.empty{color:var(--muted);padding:30px;text-align:center}
+@media(max-width:760px){.mbox{grid-template-columns:1fr}.toolbar{top:96px}header{padding:10px 16px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>📌 محفوظات المحتوى</h1>
+  <div class="spacer"></div>
+  <a href="./" id="back">→ رجوع للرادار</a>
+</header>
+<main>
+  <p class="intro" id="intro">جاري التحميل…</p>
+  <div class="stats" id="stats"></div>
+  <div id="synth"></div>
+  <div class="toolbar">
+    <input type="search" id="q" placeholder="ابحث في العنوان، الفكرة، الحساب، الصيغة…">
+    <select id="fam"><option value="">كل الصيغ</option></select>
+    <select id="typ"><option value="">كل الأنواع</option><option>كاروسيل</option><option>ريل</option><option>صورة</option></select>
+    <select id="imp"><option value="0">كل الأهميات</option><option value="5">⭐ 5 فقط</option><option value="4">4 فأعلى</option><option value="3">3 فأعلى</option></select>
+    <select id="sort"><option value="imp">ترتيب: الأهمية</option><option value="likes">ترتيب: الإعجابات</option><option value="date">ترتيب: الأحدث</option><option value="saved">ترتيب: آخر ما حُفظ</option></select>
+  </div>
+  <div class="chips" id="cats"></div>
+  <div class="count" id="count"></div>
+  <div class="grid" id="grid"></div>
+  <button class="more hidden" id="more" style="display:none">اعرض المزيد</button>
+</main>
+<div class="modal" id="modal"><button class="x" onclick="closeM()">×</button><div class="mbox" id="mbox"></div></div>
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+const fmtN=n=>n==null?'—':n>=1e6?(n/1e6).toFixed(1)+'M':n>=1e3?(n/1e3).toFixed(1)+'K':n;
+let D=null,items=[],cat='',shown=0;const PAGE=60;
+if(location.port)$('back').href='/';
+(async()=>{
+  try{D=await (await fetch((location.port?'/api/saved':'saved.json'))).json()}catch(e){$('intro').textContent='تعذّر تحميل البيانات';return}
+  items=D.items.map((x,i)=>({...x,_i:i,_s:[x['العنوان'],x['الفكرة'],x.user,x.name,x['الصيغة'],x.fam,x['التصنيف'],x['لكليم']].join(' ').toLowerCase()}));
+  $('intro').textContent=D.intro||'';
+  const s=D.stats||{};
+  $('stats').innerHTML=[[items.length,'منشورًا محفوظًا'],[s.accounts,'حسابًا'],[s.formulas,'صيغة متكررة'],[s.top,'بأهمية 5']].map(([n,l])=>`<div class="stat"><div class="n">${n??'—'}</div><div class="l">${l}</div></div>`).join('');
+  renderSynth();
+  const cc={};items.forEach(x=>cc[x['التصنيف']]=(cc[x['التصنيف']]||0)+1);
+  $('cats').innerHTML=`<span class="chip on" data-c="">الكل<i>${items.length}</i></span>`+Object.entries(cc).sort((a,b)=>b[1]-a[1]).map(([c,n])=>`<span class="chip" data-c="${esc(c)}">${esc(c)}<i>${n}</i></span>`).join('');
+  $('cats').onclick=e=>{const c=e.target.closest('.chip');if(!c)return;cat=c.dataset.c;document.querySelectorAll('#cats .chip').forEach(x=>x.classList.toggle('on',x===c));apply()};
+  const fc={};items.forEach(x=>{const f=x.fam||x['الصيغة'];if(f)fc[f]=(fc[f]||0)+1});
+  $('fam').innerHTML+=Object.entries(fc).filter(([,n])=>n>1).sort((a,b)=>b[1]-a[1]).map(([f,n])=>`<option value="${esc(f)}">${esc(f)} (${n})</option>`).join('');
+  ['q','fam','typ','imp','sort'].forEach(id=>$(id).addEventListener('input',apply));
+  $('more').onclick=()=>draw(false);
+  const h=location.hash.match(/^#p=(.+)$/);
+  apply();
+  if(h){const it=items.find(x=>x.code===decodeURIComponent(h[1]));if(it)openM(it._i)}
+})();
+function renderSynth(){
+  const y=D.synthesis;if(!y){$('synth').innerHTML='';return}
+  const li=a=>(a||[]).map(x=>`<li>${esc(x)}</li>`).join('');
+  let h='';
+  if(y.headline)h+=`<details class="syn" open><summary>🧭 الخلاصة — ما الذي يعلّمنا إياه هذا الأرشيف</summary><div class="body"><p>${esc(y.headline)}</p>${(y.sections||[]).map(s=>`<h4>${esc(s.title)}</h4><ul>${li(s.points)}</ul>`).join('')}</div></details>`;
+  if(y.formulas&&y.formulas.length)h+=`<details class="syn"><summary>⚙️ الصيغ الكبرى — ${y.formulas.length} قالبًا قابلًا لإعادة الاستخدام (اضغط أي قالب لتصفية أمثلته)</summary><div class="body"><div class="fgrid">${y.formulas.map(f=>`<div class="fcard" data-f="${esc(f.fam||f.name)}"><b>${esc(f.name)}</b><span class="c">~${f.count} مثالًا${f.fam?' · عائلة: '+esc(f.fam):''}</span><p>${esc(f.how)}</p>${f.kaleem?`<p style="color:var(--ink)">🍯 ${esc(f.kaleem)}</p>`:''}</div>`).join('')}</div></div></details>`;
+  if(y.accounts&&y.accounts.length)h+=`<details class="syn"><summary>👤 أكثر الحسابات حضورًا في المحفوظات</summary><div class="body"><div class="fgrid">${y.accounts.map(a=>`<div class="fcard" data-u="${esc(a.user)}"><b>@${esc(a.user)}</b><span class="c">${a.count} منشورًا</span><p>${esc(a.note||'')}</p></div>`).join('')}</div></div></details>`;
+  $('synth').innerHTML=h;
+  $('synth').onclick=e=>{const f=e.target.closest('.fcard');if(!f)return;if(f.dataset.f){$('fam').value=f.dataset.f;$('q').value=''}if(f.dataset.u){$('q').value=f.dataset.u;$('fam').value=''}apply();$('grid').scrollIntoView({behavior:'smooth'})};
+}
+let cur=[];
+function apply(){
+  const q=$('q').value.trim().toLowerCase(),fam=$('fam').value,typ=$('typ').value,imp=+$('imp').value,so=$('sort').value;
+  cur=items.filter(x=>(!cat||x['التصنيف']===cat)&&(!fam||(x.fam||x['الصيغة'])===fam)&&(!typ||x.type===typ)&&(+x['الأهمية']||0)>=imp&&(!q||x._s.includes(q)));
+  const k={imp:x=>(+x['الأهمية']||0)*1e9+(x.likes||0),likes:x=>x.likes||0,date:x=>x.date||'',saved:x=>-x._i}[so];
+  cur.sort((a,b)=>{const A=k(a),B=k(b);return A<B?1:A>B?-1:0});
+  $('count').textContent=cur.length+' منشورًا';
+  shown=0;$('grid').innerHTML='';draw(true);
+}
+function draw(){
+  const part=cur.slice(shown,shown+PAGE);shown+=part.length;
+  $('grid').insertAdjacentHTML('beforeend',part.map(x=>`<div class="card" onclick="openM(${x._i})">
+    <div class="th" style="background-image:url('${esc(x.thumb)}')"><span class="ty">${esc(x.type)}${x.slides?' · '+x.slides:''}</span><span class="im">${'★'.repeat(+x['الأهمية']||0)}</span></div>
+    <div class="bd"><div class="tt">${esc(x['العنوان'])}</div><div class="us">@${esc(x.user)} · ❤ ${fmtN(x.likes)}</div><div class="fm">⚙️ ${esc(x.fam||x['الصيغة'])}</div><span class="ct">${esc(x['التصنيف'])}</span></div></div>`).join(''));
+  if(!cur.length)$('grid').innerHTML='<p class="empty">لا نتائج</p>';
+  $('more').style.display=shown<cur.length?'block':'none';
+}
+const F=[['الفكرة','💡 الفكرة'],['الآلية','🧲 لماذا تشتغل'],['التنفيذ','🛠️ كيف نُفّذت'],['التفكير','🧠 كيف يفكر صاحبها'],['الكتابة','🖋️ كيف يكتب'],['التصميم','🎨 كيف صمّمها']];
+function openM(i){
+  const x=items[i];
+  $('mbox').innerHTML=`<div class="imgs">${(x.imgs||[x.thumb]).map(s=>`<img src="${esc(s)}" loading="lazy" alt="">`).join('')}</div>
+  <div class="tx"><h2>${esc(x['العنوان'])}</h2>
+  <div class="mt">@${esc(x.user)}${x.name?' — '+esc(x.name):''} · ${esc(x.type)} · ${esc(x.date)} · ❤ ${fmtN(x.likes)} · 💬 ${fmtN(x.comments)} · <a href="${esc(x.url)}" target="_blank" rel="noopener">افتح على إنستغرام ↗</a></div>
+  <div class="row"><span class="k">⚙️ الصيغة</span>${esc(x['الصيغة'])}${x.fam&&x.fam!==x['الصيغة']?' <span style="color:var(--muted)">(عائلة: '+esc(x.fam)+')</span>':''} · ${esc(x['التصنيف'])} · ${'★'.repeat(+x['الأهمية']||0)}</div>
+  ${F.map(([k,l])=>x[k]?`<div class="row"><span class="k">${l}</span>${esc(x[k])}</div>`:'').join('')}
+  ${x['لكليم']?`<div class="row kl"><span class="k">🍯 كيف يأخذها كليم</span>${esc(x['لكليم'])}</div>`:''}
+  </div>`;
+  $('modal').classList.add('on');history.replaceState(null,'','#p='+encodeURIComponent(x.code));
+}
+function closeM(){$('modal').classList.remove('on');history.replaceState(null,'',location.pathname)}
+$('modal').onclick=e=>{if(e.target.id==='modal')closeM()};
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeM()});
+</script>
+</body>
+</html>
